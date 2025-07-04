@@ -6,7 +6,9 @@ from utils.config_loader import load_config
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
 
-
+load_dotenv(".env")
+print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
+print("GROQ_API_KEY:", os.getenv("GROQ_API_KEY"))
 class ConfigLoader:
     def __init__(self):
         print(f"Loaded config.....")
@@ -40,7 +42,10 @@ class ModelLoader(BaseModel):
             print("Loading LLM from OpenAI..............")
             openai_api_key = os.getenv("OPENAI_API_KEY")
             model_name = self.config["llm"]["openai"]["model_name"]
-            llm = ChatOpenAI(model_name="o4-mini", api_key=openai_api_key)
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo", api_key=openai_api_key)
         
         return llm
-    
+if __name__ == "__main__":
+    model_loader = ModelLoader(model_provider="groq")
+    llm = model_loader.load_llm()
+    print("Loaded:", llm)

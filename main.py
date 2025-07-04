@@ -30,8 +30,11 @@ async def query_travel_agent(query:QueryRequest):
         #react_app = graph.build_graph()
 
         png_graph = react_app.get_graph().draw_mermaid_png()
-        with open("my_graph.png", "wb") as f:
-            f.write(png_graph)
+
+        # Save using the existing utility
+        
+        save_document(png_graph, "./output")
+        print(f"Graph saved via save_document() as 'my_graph.png' in {os.getcwd()}")
 
         print(f"Graph saved as 'my_graph.png' in {os.getcwd()}")
         # Assuming request is a pydantic object like: {"question": "your text"}
