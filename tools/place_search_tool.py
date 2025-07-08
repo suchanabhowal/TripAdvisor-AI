@@ -46,15 +46,5 @@ class PlaceSearchTool:
         return [search_attractions, search_restaurants, search_activities, search_transportation]
 
     
-if __name__ == "__main__"or __name__ == "tools.place_search_tool":
-    place = "Goa"
-    
 
-    search_tools = PlaceSearchTool().place_search_tool_list
-
-    print("\n--- Testing Tavily Search Tools ---\n")
-    for tool_func in search_tools:
-        print(f"\nRunning: {tool_func.name} for {place}")
-        result = tool_func.invoke({"place": place})
-        print(result)
     
